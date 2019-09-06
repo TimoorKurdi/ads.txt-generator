@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>ads.txt generator</title>
+      <style>
+         [data-tip] {
+         position:relative;
+         }
+         [data-tip]:before {
+         content:'';
+         /* hides the tooltip when not hovered */
+         display:none;
+         content:'';
+         border-left: 5px solid transparent;
+         border-right: 5px solid transparent;
+         border-bottom: 5px solid #1a1a1a;    
+         position:absolute;
+         top:30px;
+         left:35px;
+         z-index:8;
+         font-size:0;
+         line-height:0;
+         width:0;
+         height:0;
+         }
+         [data-tip]:after {
+         display:none;
+         content:attr(data-tip);
+         position:absolute;
+         top:35px;
+         left:0px;
+         padding:5px 8px;
+         background:#1a1a1a;
+         color:#fff;
+         z-index:9;
+         font-size: 0.75em;
+         height:18px;
+         line-height:18px;
+         -webkit-border-radius: 3px;
+         -moz-border-radius: 3px;
+         border-radius: 3px;
+         white-space:nowrap;
+         word-wrap:normal;
+         }
+         [data-tip]:hover:before,
+         [data-tip]:hover:after {
+         display:block;
+         }
+      </style>
+   </head>
+   <body>
+      <p>Please select an option:</p>
+      <form>
+         <input type="radio" name="vendor" value="DIRECT"> Direct <br>
+         <input type="radio" name="vendor" value="RESELLER"> Reseller <br>
+         <br>
+         <div data-tip="Please only enter numbers in the input field">
+            Pub Id: <input type="text" maxlength = 6 name="publisherId" id="pubid">
+         </div>
+      </form>
+      <br>
+      <button type="button" onclick="myFunction()">Submit</button> 
+      <br>
+      <br>
+      <div id="totalresult"></div>
+      <script>
+         function myFunction() { 
+                 var url = "contextweb.com";
+         
+                 var tagId = "89ff185a4c4e857c";
+         
+                 var elem = document.getElementsByName('vendor'); 
+         
+                 for(i = 0; i < elem.length; i++) { 
+                        if(elem[i].checked && pubid.value.length == 6 && !isNaN(pubid.value)) {
+                            var val = elem[i].value
+         
+                            var pubIdResult = document.getElementById("pubid").value;
+         
+                            document.getElementById("totalresult").innerHTML = `${url}, ${pubIdResult}, ${val}, ${tagId}`
+                                
+                        }
+         
+                        else if(pubid.value.length > 6 || pubid.value.length < 6) {
+                            return alert("Pub Id should have six characters");
+                        }
+         
+                   }
+                   
+                } 
+         
+      </script>
+   </body>
+</html>
